@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(to right, #667eea, #764ba2);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .input-group {
+      margin-bottom: 1rem;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: .5rem;
+    }
+    .input-group input {
+      width: 100%;
+      padding: .75rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .login-btn {
+      width: 100%;
+      padding: .75rem;
+      border: none;
+      background-color: #667eea;
+      color: white;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color .3s ease;
+    }
+    .login-btn:hover {
+      background-color: #5a67d8;
+    }
+    .error {
+      color: red;
+      text-align: center;
+      margin-top: .5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <div class="input-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" />
+    </div>
+    <div class="input-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" />
+    </div>
+    <button class="login-btn" onclick="login()">Login</button>
+    <div class="error" id="error"></div>
+  </div>
+
+  <script>
+    // Multiple users list
+    const users = {
+      "admin": "admin123",
+      "user1": "pass1",
+      "user2": "pass2",
+      "guest1": "guest1"
+    };
+
+    function login() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const errorDiv = document.getElementById("error");
+
+      if (users[username] && users[username] === password) {
+        localStorage.setItem("loggedIn", "true");
+        window.location.href = "index.html"; // replace with your main page
+      } else {
+        errorDiv.textContent = "Invalid username or password!";
+      }
+    }
+
+    // Redirect if already logged in
+    if (localStorage.getItem("loggedIn") === "true") {
+      window.location.href = "index.html"; // replace with your main page
+    }
+  </script>
+</body>
+</html>
