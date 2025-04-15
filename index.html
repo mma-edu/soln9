@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   <script>
+  try {
+    // Force re-login if no login flag or if localStorage is unavailable
+    const isLoggedIn = localStorage.getItem("loggedIn");
+    if (!isLoggedIn || isLoggedIn !== "true") {
+      window.location.href = "login.html";
+    }
+  } catch (e) {
+    // In case localStorage is disabled or unavailable (very rare)
+    window.location.href = "login.html";
+  }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduPlatform - Class 9 Subjects</title>
